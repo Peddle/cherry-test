@@ -3,6 +3,8 @@ from potassium import Potassium, Request, Response
 from transformers import pipeline
 import torch
 
+import logging
+
 app = Potassium("my_app")
 
 print("print above")

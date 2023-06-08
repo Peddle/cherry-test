@@ -42,5 +42,22 @@ def handler(context: dict, request: Request) -> Response:
         status=200
     )
 
+# @app.handler runs for every call
+@app.handler("/lol")
+def handler(context: dict, request: Request) -> Response:
+    
+    print("handler print")
+    logging.warning("log handler")
+
+    prompt = request.json.get("prompt")
+    model = context.get("model")
+    outputs = model(prompt)
+
+    return Response(
+        json = {"outputs": outputs[0]}, 
+        status=500
+    )
+
+
 if __name__ == "__main__":
     app.serve()

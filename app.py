@@ -5,7 +5,9 @@ import torch
 
 ### testing a hack ###
 import os
-os.environ['CUDA_VISIBLE_DEVICES'] = ["2", "3"]
+gpu_device_ids = [1, 2]
+gpu_devices = ','.join(str(id) for id in gpu_device_ids)
+os.environ['CUDA_VISIBLE_DEVICES'] = gpu_devices
 print(torch.cuda.device_count())
 ### end of hack ###
 

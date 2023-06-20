@@ -4,9 +4,9 @@ from transformers import pipeline
 import torch
 
 ### testing a hack ###
-#import os
-#os.environ['CUDA_VISIBLE_DEVICES'] = "2"
-#print(torch.cuda.device_count())
+import os
+os.environ['CUDA_VISIBLE_DEVICES'] = ["2", "3"]
+print(torch.cuda.device_count())
 ### end of hack ###
 
 import logging

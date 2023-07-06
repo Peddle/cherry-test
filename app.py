@@ -3,6 +3,8 @@ from potassium import Potassium, Request, Response
 from transformers import pipeline
 import torch
 
+import utils
+
 ### testing a hack ###
 import os
 gpu_device_ids = [1, 2]
@@ -22,6 +24,8 @@ logging.warn("log above")
 @app.init
 def init():
     
+    print(utils.lol())
+
     print("print in init")
     logging.warning("log in init")
 

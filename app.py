@@ -70,6 +70,26 @@ def handler(context: dict, request: Request) -> Response:
         status=500
     )
 
+@app.handler("/oom")
+def handler(context: dict, request: Request) -> Response:
+    l = []
+    while True:
+        l.append("memory!"*1000)
+    
+    return Response(
+        json = {}, 
+        status=200
+    )   
+
+@app.handler("/oom-gpu")
+def handler(context: dict, request: Request) -> Response:
+    l = []
+    while True:
+        device = 0 if torch.cuda.is_available() else -1
+        x = pipeline('fill-mask', model='bert-base-uncased', device=device)
+        l.append(x)
+        time.sleep(1)
+
 
 if __name__ == "__main__":
     app.serve()

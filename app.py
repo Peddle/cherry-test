@@ -26,6 +26,7 @@ logging.warn("log above")
 def init():
     
     print(utils.lol())
+    print(x)
 
     print("print in init")
     logging.warning("log in init")

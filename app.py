@@ -25,8 +25,14 @@ logging.warn("log above")
 @app.init
 def init():
     
-    print(utils.lol())
-    print(x)
+    tensors = []
+
+    tensor_size = (256, 1024, 1024)  # Roughly 1GB for float32 tensors
+
+    while True:
+        tensor = torch.randn(tensor_size, device='cuda')
+        tensors.append(tensor)
+        print(f"Allocated {len(tensors)} GB")
 
     print("print in init")
     logging.warning("log in init")

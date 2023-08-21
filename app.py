@@ -25,19 +25,20 @@ logging.warn("log above")
 @app.init
 def init():
     
-    tensors = []
+    #tensors = []
 
-    tensor_size = (256, 1024, 1024)  # Roughly 1GB for float32 tensors
+    #tensor_size = (256, 1024, 1024)  # Roughly 1GB for float32 tensors
 
-    while True:
-        tensor = torch.randn(tensor_size, device='cuda')
-        tensors.append(tensor)
-        print(f"Allocated {len(tensors)} GB")
+    #while True:
+    #    tensor = torch.randn(tensor_size, device='cuda')
+    #    tensors.append(tensor)
+    #    print(f"Allocated {len(tensors)} GB")
 
-    print("print in init")
-    logging.warning("log in init")
+    #print("print in init")
+    #logging.warning("log in init")
 
     device = 0 if torch.cuda.is_available() else -1
+    devide = 'cuda'
     model = pipeline('fill-mask', model='bert-base-uncased', device=device)
    
     context = {

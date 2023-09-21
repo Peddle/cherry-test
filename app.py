@@ -25,18 +25,6 @@ logging.warn("log above")
 @app.init
 def init():
     
-    #tensors = []
-
-    #tensor_size = (256, 1024, 1024)  # Roughly 1GB for float32 tensors
-
-    #while True:
-    #    tensor = torch.randn(tensor_size, device='cuda')
-    #    tensors.append(tensor)
-    #    print(f"Allocated {len(tensors)} GB")
-
-    #print("print in init")
-    #logging.warning("log in init")
-
     device = 0 if torch.cuda.is_available() else -1
     devide = 'cuda'
     model = pipeline('fill-mask', model='bert-base-uncased', device=device)
@@ -47,7 +35,6 @@ def init():
 
     return context
 
-# @app.handler runs for every call
 @app.handler("/timeout")
 def handler(context: dict, request: Request) -> Response:
     
@@ -62,7 +49,6 @@ def handler(context: dict, request: Request) -> Response:
         status=200
     )
 
-# @app.handler runs for every call
 @app.handler("/exception")
 def handler(context: dict, request: Request) -> Response:
     # throw an exception 
@@ -74,7 +60,6 @@ def handler(context: dict, request: Request) -> Response:
     )
 
 
-# @app.handler runs for every call
 @app.handler("/lol")
 def handler(context: dict, request: Request) -> Response:
     

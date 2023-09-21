@@ -48,20 +48,31 @@ def init():
     return context
 
 # @app.handler runs for every call
-@app.handler()
+@app.handler("/timeout")
 def handler(context: dict, request: Request) -> Response:
     
     print("handler print")
     logging.warning("log handler")
 
-    prompt = request.json.get("prompt")
-    model = context.get("model")
-    outputs = model(prompt)
+    timeout = request.json.get("timeout")
+    time.sleep(timeout)
 
     return Response(
-        json = {"outputs": outputs[0]}, 
+        json = {"outputs": "done waiting"}, 
         status=200
     )
+
+# @app.handler runs for every call
+@app.handler("/exception")
+def handler(context: dict, request: Request) -> Response:
+    # throw an exception 
+    raise Exception("woopsie")
+
+    return Response(
+        json = {"outputs": "done waiting"}, 
+        status=200
+    )
+
 
 # @app.handler runs for every call
 @app.handler("/lol")

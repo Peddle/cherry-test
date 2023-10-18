@@ -1,4 +1,4 @@
-potassium
+potassium==0.2.1
 torch
 transformers
 
